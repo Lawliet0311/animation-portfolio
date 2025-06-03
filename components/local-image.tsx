@@ -21,12 +21,12 @@ export default function LocalImage({
   const [isError, setIsError] = useState(false)
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    if (onLoad) onLoad(event)
+    onLoad && onLoad(event)
   }
 
-  const handleImageError = () => {
+  const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
     setIsError(true)
-    if (onLoad) onLoad(event)
+    onLoad && onLoad(event)
   }
 
   if (cloudinaryId) {
@@ -37,7 +37,7 @@ export default function LocalImage({
           alt={alt}
           className={cn(
             "object-cover",
-            props.className,
+            props.className || '',
           )}
           onLoad={handleImageLoad}
           onError={handleImageError}
@@ -61,7 +61,7 @@ export default function LocalImage({
         alt={alt}
         className={cn(
           "object-cover",
-          props.className,
+          props.className || '',
         )}
         onLoad={handleImageLoad}
         onError={handleImageError}

@@ -144,18 +144,7 @@ export default function CloudinaryGallery({ folder = "animation-portfolio", maxI
               key={resource.publicId}
               className="group relative aspect-square overflow-hidden rounded-md bg-elegant-card border border-elegant-border hover:border-elegant-accent1/30 transition-all duration-300"
             >
-              <CloudinaryImage
-                publicId={resource.publicId}
-                alt={resource.publicId.split("/").pop() || "图片"}
-                fill
-                className="object-cover"
-                transformations={{
-                  width: 300,
-                  height: 300,
-                  crop: "fill",
-                  quality: 80,
-                }}
-              />
+
 
               {/* 悬停操作 */}
               <div className="absolute inset-0 bg-elegant-bg/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-2">
@@ -182,15 +171,6 @@ export default function CloudinaryGallery({ folder = "animation-portfolio", maxI
 
                       {selectedImage && (
                         <div className="space-y-4">
-                          <div className="relative aspect-video overflow-hidden rounded-md">
-                            <CloudinaryImage
-                              publicId={selectedImage.publicId}
-                              alt={selectedImage.publicId.split("/").pop() || "图片"}
-                              fill
-                              className="object-contain"
-                            />
-                          </div>
-
                           <div className="grid grid-cols-1 gap-2 text-sm">
                             <div>
                               <span className="text-elegant-muted">Public ID: </span>
@@ -248,7 +228,7 @@ export default function CloudinaryGallery({ folder = "animation-portfolio", maxI
                             <div>
                               <span className="text-elegant-muted">最后修改时间: </span>
                               <span className="text-elegant-text">
-                                {new Date(selectedImage.lastModified).toLocaleString()}
+                                {new Date(selectedImage.createdAt).toLocaleString()}
                               </span>
                             </div>
                           </div>
@@ -256,7 +236,7 @@ export default function CloudinaryGallery({ folder = "animation-portfolio", maxI
                           <Button
                             variant="destructive"
                             className="w-full"
-                            onClick={() => handleDelete(selectedImage.fileName)}
+                            onClick={() => handleDelete(selectedImage.publicId)}
                             disabled={isDeleting}
                           >
                             {isDeleting ? (
@@ -284,7 +264,7 @@ export default function CloudinaryGallery({ folder = "animation-portfolio", maxI
                     variant="destructive"
                     size="icon"
                     className="h-8 w-8 bg-elegant-bg/50"
-                    onClick={() => handleDelete(resource.fileName)}
+                    onClick={() => handleDelete(resource.publicId)}
                     disabled={isDeleting}
                   >
                     <Trash2 className="h-4 w-4" />

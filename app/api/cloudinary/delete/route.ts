@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
     // 删除资源
     const result = await new Promise((resolve, reject) => {
-      cloudinary.uploader.destroy(publicId, (error, result) => {
+      cloudinary.uploader.destroy(publicId, (error: any, result: any) => {
         if (error) reject(error)
         else resolve(result)
       })

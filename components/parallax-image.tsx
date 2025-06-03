@@ -4,7 +4,8 @@ import { Parallax } from "react-scroll-parallax"
 import useMobile from "@/hooks/use-mobile"
 import Image from "next/image"
 
-interface ParallaxImageProps {
+interface ParallaxImageProps extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
   className?: string
   speed?: number
   easing?: "easeIn" | "easeOut" | "easeInOut" | "linear"

@@ -3,7 +3,7 @@ import { optimizeImage } from "@/lib/image-optimization"
 import { join } from "path"
 import { v4 as uuidv4 } from "uuid"
 import os from "os"
-import * as fs from "node:fs/promises"
+import { mkdir, writeFile, readFile } from "node:fs/promises"
 
 export async function POST(request: NextRequest) {
   try {
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     })
 
     // 读取优化后的图片
-    const optimizedFile = await fs.readFile(optimizedPath)
+    const optimizedFile = await readFile(optimizedPath)
     const optimizedBuffer = Buffer.from(optimizedFile)
 
     // 返回优化后的图片

@@ -249,7 +249,7 @@ export default function CloudinaryUploader({
               variant="outline"
               size="sm"
               onClick={() => {
-                navigator.clipboard.writeText(uploadResult.secure_url)
+                navigator.clipboard.writeText(uploadResult?.secure_url || '')
               }}
             >
               复制URL

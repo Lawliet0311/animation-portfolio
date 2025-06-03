@@ -1,8 +1,9 @@
 import Image, { ImageProps } from "next/image";
 import { buildUrl } from "cloudinary-build-url";
 
-interface CloudinaryImageProps extends ImageProps {
+interface CloudinaryImageProps extends Omit<ImageProps, 'src' | 'alt'> {
   publicId: string;
+  alt: string;
 }
 
 export default function CloudinaryImage({
@@ -17,8 +18,10 @@ export default function CloudinaryImage({
     transform: {
       quality: "auto",
       format: "auto",
+
     },
   });
 
-  return <Image src={url} alt={alt} {...props} />;
+  return <Image src={url} alt={alt} className={props.className || ''} {...props} />;
+ 
 }

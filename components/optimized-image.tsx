@@ -4,12 +4,13 @@ import { useState, useEffect } from "react"
 import Image, { type ImageProps } from "next/image"
 import { cn } from "@/lib/utils"
 
-interface OptimizedImageProps extends Omit<ImageProps, "onLoad" | "onError"> {
+interface OptimizedImageProps extends Omit<ImageProps, 'className'> {
   lowQualitySrc?: string
   blurEffect?: boolean
   fadeIn?: boolean
   fadeInDuration?: number
   onLoadingComplete?: (success: boolean) => void
+  className?: string
 }
 
 export default function OptimizedImage({
@@ -21,6 +22,8 @@ export default function OptimizedImage({
   fadeInDuration = 500,
   className,
   onLoadingComplete,
+
+
   ...props
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -35,7 +38,7 @@ export default function OptimizedImage({
   // 处理图片加载错误
   const handleImageError = () => {
     setIsError(true)
-    if (onLoadingComplete) onLoadingComplete(false)
+    onLoadingComplete && onLoadingComplete(false)
   }
 
   // 在组件卸载时清理
@@ -62,6 +65,7 @@ export default function OptimizedImage({
             "object-cover transition-opacity duration-300",
             props.objectFit ? `object-${props.objectFit}` : "object-cover",
             "blur-sm scale-105",
+            className || '',
           )}
         />
       )}
@@ -71,13 +75,7 @@ export default function OptimizedImage({
         {...props}
         src={src || "/placeholder.svg"}
         alt={alt}
-        className={cn(
-          "object-cover",
-          fadeIn && "transition-opacity",
-          fadeIn && { [`duration-${fadeInDuration}`]: true },
-          !isLoaded && fadeIn ? "opacity-0" : "opacity-100",
-          props.className,
-        )}
+        className={cn("object-cover", className || '')}
         onLoadingComplete={handleImageLoad}
         onError={handleImageError}
       />

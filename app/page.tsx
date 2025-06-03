@@ -29,6 +29,8 @@ export default function Home() {
         <FloatingElements />
         <div className="container relative z-10 px-4 md:px-6 flex flex-col items-center text-center space-y-6 md:space-y-8 animate-fade-in">
           <ParallaxSection speed={3} direction="down">
+            {/* Add children prop to satisfy ParallaxSectionProps */}
+            <div></div>
             {/* Badge已移除 */}
           </ParallaxSection>
 
