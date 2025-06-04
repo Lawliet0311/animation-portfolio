@@ -8,8 +8,8 @@ interface ParallaxImageProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   className?: string
   speed?: number
-  easing?: "easeIn" | "easeOut" | "easeInOut" | "linear"
-  scale?: [number, number]
+  easing?: "ease" | "easeIn" | "easeOut" | "easeInOut" | "easeInQuad" | "easeInCubic" | "easeInQuart" | "easeInQuint" | "easeInSine" | "easeInExpo" | "easeInCirc" | "easeOutQuad" | "easeOutCubic" | "easeOutQuart" | "easeOutQuint" | "easeOutSine" | "easeOutExpo" | "easeOutCirc" | "easeInOutQuad" | "easeInOutCubic" | "easeInOutQuart" | "easeInOutQuint" | "easeInOutSine" | "easeInOutExpo" | "easeInOutCirc"
+  scale?: [number, number] | [number, number, any]
   aspectRatio?: string
   alt?: string
 }
@@ -26,7 +26,7 @@ export default function ParallaxImage({
 
   // 在移动设备上减少视差效果的强度
   const mobileSpeed = isMobile ? speed * 0.3 : speed
-  const mobileScale = isMobile ? [1, 1.01] : scale
+  const mobileScale: [number, number] | [number, number, any] = isMobile ? [1, 1.01] : scale
 
   return (
     <Parallax

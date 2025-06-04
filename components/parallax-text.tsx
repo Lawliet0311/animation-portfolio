@@ -8,7 +8,7 @@ interface ParallaxTextProps {
   children: ReactNode
   className?: string
   speed?: number
-  easing?: "easeIn" | "easeOut" | "easeInOut" | "linear"
+  easing?: "ease" | "easeIn" | "easeOut" | "easeInOut" | "easeInQuad" | "easeInCubic" | "easeInQuart" | "easeInQuint" | "easeInSine" | "easeInExpo" | "easeInCirc" | "easeOutQuad" | "easeOutCubic" | "easeOutQuart" | "easeOutQuint" | "easeOutSine" | "easeOutExpo" | "easeOutCirc" | "easeInOutQuad" | "easeInOutCubic" | "easeInOutQuart" | "easeInOutQuint" | "easeInOutSine" | "easeInOutExpo" | "easeInOutCirc"
 }
 
 export default function ParallaxText({

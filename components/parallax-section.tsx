@@ -7,7 +7,7 @@ import useMobile from "@/hooks/use-mobile"
 interface ParallaxSectionProps {
   children: ReactNode
   speed?: number
-  easing?: "easeIn" | "easeOut" | "easeInOut" | "linear"
+  easing?: "ease" | "easeIn" | "easeOut" | "easeInOut" | "easeInQuad" | "easeInCubic" | "easeInQuart" | "easeInQuint" | "easeInSine" | "easeInExpo" | "easeInCirc" | "easeOutQuad" | "easeOutCubic" | "easeOutQuart" | "easeOutQuint" | "easeOutSine" | "easeOutExpo" | "easeOutCirc" | "easeInOutQuad" | "easeInOutCubic" | "easeInOutQuart" | "easeInOutQuint" | "easeInOutSine" | "easeInOutExpo" | "easeInOutCirc"
   className?: string
   direction?: "up" | "down" | "left" | "right"
   opacity?: [number, number]

@@ -2,6 +2,17 @@ import fs from "node:fs/promises"
 import path from "path"
 import sharp from "sharp"
 
+// 图片格式类型
+export type ImageFormat = "jpeg" | "jpg" | "png" | "webp" | "avif" | "tiff" | "gif"
+
+// 图片质量预设
+export const QUALITY_PRESETS = {
+  low: 60,
+  medium: 80,
+  high: 90,
+  max: 100,
+}
+
 // 图片尺寸预设
 export const SIZE_PRESETS = {
   thumbnail: { width: 200, height: 200 },

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import CloudinaryImage from "@/components/cloudinary-image"
 
 interface LocalImageProps extends ImageProps {
+  className?: string;
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement, Event>) => void
   cloudinaryId?: string
 }
@@ -31,13 +32,13 @@ export default function LocalImage({
 
   if (cloudinaryId) {
     return (
-      <div className={cn("relative overflow-hidden", className)}>
+      <div className={cn("relative overflow-hidden", className || '')}>
         <CloudinaryImage
           publicId={cloudinaryId}
           alt={alt}
           className={cn(
             "object-cover",
-            props.className || '',
+            className || '',
           )}
           onLoad={handleImageLoad}
           onError={handleImageError}
@@ -54,14 +55,14 @@ export default function LocalImage({
   }
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div className={cn("relative overflow-hidden", className || '')}>
       <Image
         {...props}
         src={isError ? "/placeholder.svg" : src}
         alt={alt}
         className={cn(
           "object-cover",
-          props.className || '',
+          className || '',
         )}
         onLoad={handleImageLoad}
         onError={handleImageError}

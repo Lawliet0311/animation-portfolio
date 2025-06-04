@@ -4,17 +4,15 @@ import { useState, useEffect } from "react"
 import Image, { type ImageProps } from "next/image"
 import { cn } from "@/lib/utils"
 
-interface OptimizedImageProps extends Omit<ImageProps, 'className'> {
-  className?: string;
+interface OptimizedImageProps extends Omit<ImageProps, 'onLoadingComplete'> {
   lowQualitySrc?: string
   blurEffect?: boolean
   fadeIn?: boolean
   fadeInDuration?: number
   onLoadingComplete?: (success: boolean) => void
+  /** 自定义类名 */
+  className?: string
 }
-
-// 使用时添加类型断言
-const className = (props as OptimizedImageProps).className || '';
 
 export default function OptimizedImage({
   src,
@@ -23,10 +21,8 @@ export default function OptimizedImage({
   blurEffect = true,
   fadeIn = true,
   fadeInDuration = 500,
-  className,
+  className = '',
   onLoadingComplete,
-
-
   ...props
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -78,7 +74,7 @@ export default function OptimizedImage({
         {...props}
         src={src || "/placeholder.svg"}
         alt={alt}
-        className={cn("object-cover", (props as any).className || '')}
+        className={cn("object-cover", className)}
         onLoadingComplete={handleImageLoad}
         onError={handleImageError}
       />

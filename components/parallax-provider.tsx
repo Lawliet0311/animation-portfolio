@@ -15,7 +15,6 @@ export default function ParallaxProvider({ children }: ParallaxProviderProps) {
     <ScrollParallaxProvider
       // 在移动设备上减少视差效果的强度，提高性能
       scrollAxis="vertical"
-      shouldDisableScalingTranslations={isMobile}
     >
       {children}
     </ScrollParallaxProvider>

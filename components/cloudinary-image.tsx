@@ -4,6 +4,7 @@ import { buildUrl } from "cloudinary-build-url";
 interface CloudinaryImageProps extends Omit<ImageProps, 'src' | 'alt'> {
   publicId: string;
   alt: string;
+  className?: string;
 }
 
 export default function CloudinaryImage({
